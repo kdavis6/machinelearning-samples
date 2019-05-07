@@ -17,8 +17,8 @@ namespace MovieRecommendation
         private static string TrainingDataLocation = $"{DatasetsLocation}/recommendation-ratings-train.csv";
         private static string TestDataLocation = $"{DatasetsLocation}/recommendation-ratings-test.csv";
         private static string MoviesDataLocation = $"{DatasetsLocation}/movies.csv";
-        private const float predictionuserId = 6;
-        private const int predictionmovieId = 10;
+        private const float predictionuserId = 3;
+        private const int predictionmovieId = 100;
   
         static void Main(string[] args)
         {
@@ -56,7 +56,7 @@ namespace MovieRecommendation
             IDataView testDataView = reader.Read(new MultiFileSource(TestDataLocation));
             var prediction = model.Transform(testDataView);
             var metrics = mlcontext.Regression.Evaluate(prediction, label: "Label", score: "Score");
-            //Console.WriteLine("The model evaluation metrics rms:" + Math.Round(float.Parse(metrics.Rms.ToString()), 1));
+            Console.WriteLine("The model evaluation metrics rms:" + Math.Round(float.Parse(metrics.Rms.ToString()), 1));
 
 
             //STEP 7:  Try/test a single prediction by predicting a single movie rating for a specific user
